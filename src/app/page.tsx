@@ -109,35 +109,53 @@ export default function Home() {
           onAdd={handleAdd}
         />
 
-        <div className="p-6">
+        <div className="sm:max-w-4xl sm:mx-auto sm:px-4 p-6">
           {/* フィルタボタン */}
           <div className="flex gap-2 mb-4 flex-wrap">
             {filters.map((f) => (
               <button
                 key={f.key}
                 onClick={() => setFilter(f.key)}
-                className={`px-3 py-1 border rounded text-sm transition
-                  ${
-                    filter === f.key
-                      ? "bg-blue-500 text-white border-blue-500"
-                      : "bg-white text-gray-700 hover:bg-gray-100"
-                  }`}
+                className={`
+                    px-3 py-1.5 text-xs
+                    sm:px-4 sm:py-2 sm:text-sm
+
+                    rounded
+                    border
+
+                    transition-all duration-150
+
+                    shadow-sm
+                    active:scale-95 active:shadow-inner
+
+                    ${
+                      filter === f.key
+                        ? "bg-blue-500 text-white border-blue-500 shadow"
+                        : "bg-white text-gray-700 border-gray-200"
+                    }
+                  `}
               >
                 {f.label}
               </button>
             ))}
           </div>
 
-          <TaskList
-            tasks={filteredTasks}
-            onToggle={toggleTask}
-            onDelete={deleteTask}
-            openTaskId={openTaskId}
-            setOpenTaskId={setOpenTaskId}
-            editingTaskId={editingTaskId}
-            setEditingTaskId={setEditingTaskId}
-            onEdit={handleEdit}
-          />
+          {filteredTasks.length === 0 ? (
+            <div className="bg-white p-6 rounded-xl shadow-sm text-center">
+              <p className="text-gray-500 text-sm mb-2">タスクがありません</p>
+            </div>
+          ) : (
+            <TaskList
+              tasks={filteredTasks}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+              openTaskId={openTaskId}
+              setOpenTaskId={setOpenTaskId}
+              editingTaskId={editingTaskId}
+              setEditingTaskId={setEditingTaskId}
+              onEdit={handleEdit}
+            />
+          )}
         </div>
       </div>
     </>
