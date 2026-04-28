@@ -53,7 +53,7 @@ export default function TaskForm({ initialValues, onSave, onCancel }: Props) {
       <div className="flex gap-2 mt-1">
         <button
           onClick={() => onSave(values)}
-          className="px-3 py-1 bg-green-500 text-white text-sm rounded"
+          className="px-3 py-1 bg-blue-500 text-white text-sm rounded"
         >
           保存
         </button>
